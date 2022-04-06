@@ -24,18 +24,19 @@ int main(void)
 }
 void BinarySort(int *arr,int first,int last)
 {
+ // 1 2 3 4 5 6 7 8 9 10
     if(first<last){
 
-        int left=first;
-    int right=last;
-    int middle=arr[(left+right)/2];
+        int left=first;  // 0 (1)
+    int right=last;   // 10(9)
+    int middle=arr[(left+right)/2]; // (5)
 
     do{
-            while(arr[left]<middle)
+            while(arr[left]<middle) // пока left [0] - (1) будет меньше чем middle [4] - (5) будем увеличивать left 
             left++;
     while(arr[right]>middle)
         right--;
-    if(left<=right)
+    if(left<=right) // проверка [0] before [9]
     {
         int tmp=arr[left];
         arr[left]=arr[right];
