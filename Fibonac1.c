@@ -14,6 +14,7 @@ int main(void)
    printf(" %d ",funcFub(i));
    return 0;
 }
+
 int funcFub(int N)
 {
     if(N==1 || N==2)
