@@ -70,6 +70,6 @@ int main()
 	newRecord(sc, 12, 101);
 	
 	double age = midleElement(sc);
-	printf("Lest - %lf \n ", age);
+	printf("Middle element  - %lf \n ", age);
 
 }
