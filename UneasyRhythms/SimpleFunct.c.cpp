@@ -1,97 +1,75 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 
+struct study {
+	int estimation;
+	int numberStudy;
 
-
-// addRecord функция получает указатель на коллекцию стундент карточек
-// номер студента и балл и добавляет новую запись с этими даннымми в колекц
-
-//averageRecord функция получает указатель на коллекцию стунденческих карточек и возращает
-//среднее значение баллов студентов этой коллекции в формате double 
-
-
-
-
-struct listStudent {
-	int numberStudent;
-	int colDown;
-	listStudent* next;
-
+	study* next;
 };
 
-typedef listStudent* OverFolf;
+typedef study *CollectionOne;
 
 
-
-double averageRecord(OverFolf sc){
-
-	int count = 0; // хранит количество пройденых узлов списка 
-
+double midleElement(CollectionOne sc)
+{
+	int number = 0;
 	double sum = 0;
-	listStudent* loopPts = sc;
-	while (loopPts != NULL)
+	study* four = sc;
+	while (four != NULL)
 	{
-		sum += loopPts->colDown;
-		count++;
-		loopPts = loopPts->next;
+		sum += four->estimation;
+		number++;
+		four = four->next;
 	}
-
-	double average = sum / count;
+	double average = sum / number;
 	return average;
 }
 
-void addRecord(OverFolf sc, int stuNum, int gr) {
-	listStudent* newNode = new listStudent;
-	newNode->numberStudent = stuNum;
-	newNode->colDown = gr;
-	newNode->next = sc;
-	sc = newNode;
-	printf("Unknown = %d \n", newNode->numberStudent);
+
+
+void newRecord(CollectionOne sc, int estN, int numberN)
+{
+	study* oneN = (struct study*)malloc(sizeof(struct study*));
+
+	oneN->estimation = estN;
+	oneN->numberStudy =numberN;
+	oneN->next = sc;
+
+	sc=oneN;
+	printf("More - %d \n", oneN->estimation);
+	printf("Better - %d \n", oneN->numberStudy);
 }
 
-int main(void)
+
+int main()
 {
-	OverFolf secr;
+	CollectionOne sc;
 
-	listStudent* once =(struct listStudent*)malloc(sizeof(struct listStudent));
-		// new listStudent;
-		
+	study* one = (struct study*)malloc(sizeof(struct study*));
+	one->estimation = 5;
+	one->numberStudy = 182;
+
+	study* two = (struct study*)malloc(sizeof(struct study*));
+	two->estimation = 9;
+	two->numberStudy = 137;
+
+	study* three = (struct study*)malloc(sizeof(struct study*));
+	three->estimation = 6;
+	three->numberStudy = 88;
+
+	sc = one;
+
+	one->next = two;
+	two->next = three;
+	three->next = NULL;
+
+	one = two = three = NULL;
+
+	newRecord(sc, 12, 101);
 	
-	once->numberStudent = 101;
-	once->colDown = 12;
-
-	listStudent* second = (struct listStudent*)malloc(sizeof(struct listStudent));
-		
-		//new listStudent;
-	second->numberStudent = 321;
-	second->colDown = 19;
-
-	listStudent* thirth = (struct listStudent*)malloc(sizeof(struct listStudent));
-		//new listStudent;
-
-	thirth->numberStudent = 182;
-	thirth->colDown = 22;
-
-	secr = once; // 1 узел
-
-	once ->next= second; // 2 узел
-	second->next = thirth; //  3 узел
-
-	printf("\nSecond = %d ", second->numberStudent);
-
-	thirth->next= NULL; // присваевываем Null чтобы обозначить окончание структуры 
-
-	 once = second= thirth = NULL; // обнуляем 
-
-	printf("\nOnce = %d ", secr->numberStudent);
-	printf("Once = %d\n", secr->colDown);
-
-	addRecord(secr,99,3);
-	double  avg = averageRecord(secr);
-
-	printf("D - %lf\n ", avg);
-
-	printf("\nProgramm good working !");
+	double age = midleElement(sc);
+	printf("Lest - %lf \n ", age);
 
 }
