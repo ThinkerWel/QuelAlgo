@@ -9,7 +9,7 @@ int main(void)
     int middle=0;
     int b=-1;
 
-    // left указывает на 1 элемент массивa,a right на последний
+   
 
     for(int i=0;i<6;i++)
     printf("Массив : %d ",arr[i]);
@@ -17,9 +17,9 @@ int main(void)
     printf("Введите искомый элемент ->\n");
     scanf("%d",&number);
 
-        while(left<=right) // будет работать до такого момента покa right не станет меньше чем left,или пока left не станет больше чем right
+        while(left<=right) 
         {
-            middle=(left+right)/2; // указывает на центральное число
+            middle=(left+right)/2;
             if(number==arr[middle]){
                 b=middle;
             printf("Искомый элемент есть в списке !\n");
@@ -27,11 +27,11 @@ int main(void)
 
 
         if(number<arr[middle])
-            right=middle-1; //  правая часть
+            right=middle-1;
 
 
             else
-            left=middle+1; // левая часть
+            left=middle+1; 
         }
 
         if(b==-1)
