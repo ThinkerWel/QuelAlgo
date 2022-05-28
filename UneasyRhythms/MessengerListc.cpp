@@ -1,75 +1,83 @@
-#include <stdio.h>
-#include <stdlib.h>
+typedef struct Node {
+	int price;
+	int numberStudent;
+	struct Node* next;
+}Node;
 
-
-struct study {
-	int estimation;
-	int numberStudy;
-
-	study* next;
-};
-
-typedef study *CollectionOne;
-
-
-double midleElement(CollectionOne sc)
+Node* create(int prc, int num)
 {
-	int number = 0;
-	double sum = 0;
-	study* four = sc;
-	while (four != NULL)
+	Node* add = (struct Node*)malloc(sizeof(struct Node));
+	add->price = prc;
+	add->numberStudent = num;
+	add->next =NULL;
+
+	return add;
+}
+
+void AddElement(Node** newS,int prc,int num)
+{
+	Node* add = create(prc, num);
+	add->next = *newS;
+	*newS = add;
+}
+
+void AddEnd(Node** newS, int prc, int num)
+{
+	Node* enough = create(prc, num);
+	Node* copy = *newS;
+
+	while (copy->next != NULL)
 	{
-		sum += four->estimation;
-		number++;
-		four = four->next;
+		copy = copy->next;
+
 	}
-	double average = sum / number;
+	copy->next = enough;
+}
+
+
+int  MidleElement(Node** mid)
+{
+	int number=0;
+	int sum = 0;
+	Node* f = *mid;
+	while (f->next != NULL)
+	{
+		sum += f->price;
+		sum += f->numberStudent;
+		number++;
+		f = f->next;
+	}
+
+	int average = sum / number;
+	printf("Middle = %d\n ", average);
 	return average;
 }
 
 
-
-void newRecord(CollectionOne sc, int estN, int numberN)
+int main(void)
 {
-	study* oneN = (struct study*)malloc(sizeof(struct study*));
+	Node* addly = create(115, 11);
+	AddElement(&addly,270,19);
 
-	oneN->estimation = estN;
-	oneN->numberStudy =numberN;
-	oneN->next = sc;
+	AddEnd(&addly, 540, 6);
+	MidleElement(&addly);
 
-	sc=oneN;
-	printf("More - %d \n", oneN->estimation);
-	printf("Better - %d \n", oneN->numberStudy);
-}
+	Node* copy = addly;
+
+	while (copy->next != NULL)
+	{
+		if (copy->numberStudent == 19 || copy->price==115) {
+			Node* newS = create(22, 88);
+			newS->next = copy->next;
+			copy->next = newS;
+		}
+		copy = copy->next;
+	}
 
 
-int main()
-{
-	CollectionOne sc;
-
-	study* one = (struct study*)malloc(sizeof(struct study*));
-	one->estimation = 5;
-	one->numberStudy = 182;
-
-	study* two = (struct study*)malloc(sizeof(struct study*));
-	two->estimation = 9;
-	two->numberStudy = 137;
-
-	study* three = (struct study*)malloc(sizeof(struct study*));
-	three->estimation = 6;
-	three->numberStudy = 88;
-
-	sc = one;
-
-	one->next = two;
-	two->next = three;
-	three->next = NULL;
-
-	one = two = three = NULL;
-
-	newRecord(sc, 12, 101);
-	
-	double age = midleElement(sc);
-	printf("Middle element  - %lf \n ", age);
-
+	while (addly != NULL)
+	{
+		printf("P = %d   N = %d ", addly->price, addly->numberStudent);
+		addly = addly->next;
+	}
 }
