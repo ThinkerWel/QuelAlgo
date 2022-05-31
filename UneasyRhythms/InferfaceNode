@@ -14,10 +14,7 @@ typedef struct node {
 
 typedef Node* List;
 
-//typedef struct list {
-  //  Node* head;
-    //int size;
-//}List;
+
 
 
 void showmovies(Item item);
