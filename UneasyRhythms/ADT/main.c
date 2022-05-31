@@ -1,13 +1,5 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
-#pragma warning(disable : 4996) .
-#include<stdio.h>
-#include<stdlib.h>
-#include <string.h>
-#include <stdbool.h>
+
 #define MAXQUEUE 10
-
-
-
 
 // очередь целых чисел
 typedef int Item;
